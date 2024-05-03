@@ -1,0 +1,73 @@
+/* font */
+@font-face {
+  font-family: "AppleSDGothicNeo";
+  font-weight: 100;
+  font-style: normal;
+  src: url("./statics/fonts/AppleSDGothicNeoT.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AppleSDGothicNeo";
+  font-weight: 200;
+  font-style: normal;
+  src: url("./statics/fonts/AppleSDGothicNeoUL.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AppleSDGothicNeo";
+  font-weight: 300;
+  src: url("./statics/fonts/AppleSDGothicNeoL.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AppleSDGothicNeo";
+  font-weight: 400;
+  src: url("./statics/fonts/AppleSDGothicNeoR.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AppleSDGothicNeo";
+  font-weight: 500;
+  src: url("./statics/fonts/AppleSDGothicNeoM.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AppleSDGothicNeo";
+  font-weight: 600;
+  src: url("./statics/fonts/AppleSDGothicNeoSB.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AppleSDGothicNeo";
+  font-weight: 700;
+  src: url("./statics/fonts/AppleSDGothicNeoB.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AppleSDGothicNeo";
+  font-weight: 800;
+  src: url("./statics/fonts/AppleSDGothicNeoEB.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AppleSDGothicNeo";
+  font-weight: 900;
+  src: url("./statics/fonts/AppleSDGothicNeoH.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Hahmlet;
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/Hahmlet-Bold.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
