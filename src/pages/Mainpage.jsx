@@ -31,11 +31,21 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const MainImg = styled(MainCocktail)`
   margin: 6.69rem 5.19rem 2.5rem 6.63rem;
   flex-shrink: 0;
+
+  @media (max-width: 320px) {
+    margin-top: 5.69rem;
+  }
 `;
 
 const MainText = styled.div`
@@ -46,6 +56,10 @@ const MainText = styled.div`
   font-weight: 700;
   line-height: 100%;
   letter-spacing: -0.0375rem;
+
+  @media (max-width: 320px) {
+    font-size: 1.675rem;
+  }
 `;
 
 const SubText = styled.div`
