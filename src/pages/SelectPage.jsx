@@ -72,8 +72,10 @@ const Wrapper = styled.div`
 `;
 
 const Question = styled.div`
-  width: 100%;
-  height: auto;
+  height: 3.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: var(--Black, #262121);
   text-align: center;
   font-size: 1.5rem;
@@ -81,7 +83,7 @@ const Question = styled.div`
   font-weight: 700;
   letter-spacing: -0.03rem;
   white-space: pre-wrap;
-  margin-bottom: 4.38rem;
+  margin-bottom: 3.38rem;
 
   @media (max-width: 340px) {
     font-size: 1.3rem;
