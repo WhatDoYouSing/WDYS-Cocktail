@@ -83,7 +83,7 @@ const Question = styled.div`
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
-  letter-spacing: -0.03rem;
+  letter-spacing: -2px;
   white-space: pre-wrap;
   margin-bottom: 3.38rem;
 
