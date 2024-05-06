@@ -96,6 +96,10 @@ const MainText = styled.div`
   font-weight: 700;
   line-height: 100%;
   letter-spacing: -0.0375rem;
+
+  @media (max-width: 320px) {
+    font-size: 1.775rem;
+  }
 `;
 
 const Card = styled.div`
