@@ -48,10 +48,6 @@ const Wrapper = styled.div`
 const MainImg = styled(MainCocktail)`
   margin: 3.22rem 5.19rem 2.5rem 6.63rem;
   flex-shrink: 0;
-
-  @media (max-width: 320px) {
-    margin-top: 5.69rem;
-  }
 `;
 
 const MainText = styled.div`
