@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { selectData } from "../components/Select.mock";
 import { useNavigate } from "react-router-dom";
+
+import { selectData } from "../statics/data/selectData";
 
 const SelectPage = () => {
   const [result, setResult] = useState([0, 0, 0, 0]); // [빨, 주, 파, 초]
@@ -12,35 +13,22 @@ const SelectPage = () => {
 
   const navigate = useNavigate();
 
-  //1번 선택
-  const select1 = () => {
-    if (currentId <= selectData.length) {
-      const count = currentData.count || []; // 1번 선택 시 증가시킬 값이 든 배열
-      for (let i = 0; i < result.length; i++) {
-        if (count.includes(i)) {
-          updatedResult[i] += 1;
-        }
+  const select = (option) => {
+    const count = currentData.count || [];
+    for (let i = 0; i < result.length; i++) {
+      if (
+        (option === 1 && count.includes(i)) ||
+        (option === 2 && !count.includes(i))
+      ) {
+        updatedResult[i] += 1;
       }
-      setResult(updatedResult);
-      goNext();
-    } else {
-      goResult();
     }
-  };
+    setResult(updatedResult);
 
-  //2번 선택
-  const select2 = () => {
-    if (currentId <= selectData.length) {
-      const count = currentData.count || [];
-      for (let i = 0; i < result.length; i++) {
-        if (!count.includes(i)) {
-          updatedResult[i] += 1;
-        }
-      }
-      setResult(updatedResult);
+    if (currentId <= 9) {
       goNext();
     } else {
-      goResult();
+      goResult(updatedResult);
     }
   };
 
@@ -50,26 +38,22 @@ const SelectPage = () => {
   };
 
   //결과 페이지로 이동
-  const goResult = () => {
-    // setResult(updatedResult);
-    const max = Math.max(...result); // 최댓값
-    console.log(max);
-    navigate("/result");
+  const goResult = (updatedResult) => {
+    const max = Math.max(...updatedResult);
+    const maxIndex = updatedResult.indexOf(max);
+    navigate("/result", { state: maxIndex });
   };
-
-  useEffect(() => {
-    console.log("result" + (currentData.id - 1) + ": " + result);
-    // if (currentId == selectData.length) {
-    //   goResult();
-    // }
-  }, [result, currentId]);
 
   return (
     <>
       <Wrapper>
         <Question>{selectData[currentId - 1].question}</Question>
-        <Option onClick={select1}>{selectData[currentId - 1].option1}</Option>
-        <Option onClick={select2}>{selectData[currentId - 1].option2}</Option>
+        <Option onClick={() => select(1)}>
+          {selectData[currentId - 1].option1}
+        </Option>
+        <Option onClick={() => select(2)}>
+          {selectData[currentId - 1].option2}
+        </Option>
         <PageNum>{currentId}/10</PageNum>
       </Wrapper>
     </>
@@ -85,7 +69,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0 2.87rem;
 `;
 
 const Question = styled.div`
@@ -96,9 +79,13 @@ const Question = styled.div`
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 100%; /* 1.5rem */
   letter-spacing: -0.03rem;
+  white-space: pre-wrap;
   margin-bottom: 4.38rem;
+
+  @media (max-width: 340px) {
+    font-size: 1.3rem;
+  }
 `;
 
 const Option = styled.div`
@@ -120,6 +107,11 @@ const Option = styled.div`
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+
+  @media (max-width: 340px) {
+    width: 16.625rem;
+    font-size: 1.1rem;
+  }
 `;
 
 const PageNum = styled.div`

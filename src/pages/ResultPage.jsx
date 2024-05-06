@@ -1,66 +1,59 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
-import cocktail01 from "../images/cocktail01.png";
-import cocktail02 from "../images/cocktail02.png";
-import cocktail03 from "../images/cocktail03.png";
-import cocktail04 from "../images/cocktail04.png";
+import { resultData } from "../statics/data/resultData";
 import Footer from "../components/Footer";
 
 const ResultPage = () => {
-  const [resultIndex, setResultIndex] = useState(0);
+  const location = useLocation();
+  const [resultIndex, setResultIndex] = useState(location.state ?? 0);
 
-  const resultArray = [
-    {
-      name: "Love parade",
-      color: "#FC6637",
-      card: cocktail01,
-      link: "https://whatdoyousing.swygbro.com/detail/212",
-    },
-    {
-      name: "항해",
-      color: "#50CBF1",
-      card: cocktail02,
-      link: "https://whatdoyousing.swygbro.com/detail/214",
-    },
-    {
-      name: "난춘",
-      color: "#FFA23F",
-      card: cocktail03,
-      link: "https://whatdoyousing.swygbro.com/detail/213",
-    },
-    {
-      name: "초록비",
-      color: "#66DA87",
-      card: cocktail04,
-      link: "https://whatdoyousing.swygbro.com/detail/215",
-    },
-  ];
+  const handleSaveImage = () => {
+    const imageSrc = resultData[resultIndex].card;
+    const link = document.createElement("a");
+    link.href = imageSrc;
+    link.download = "cocktail_image.png";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleCopySiteLink = () => {
+    const siteUrl = "https://wdys-cocktail.vercel.app/";
+    navigator.clipboard
+      .writeText(siteUrl)
+      .then(() => alert("사이트 링크가 복사되었습니다."))
+      .catch((error) => {
+        console.error("링크 복사 실패: ", error);
+        alert("사이트 링크 복사에 실패했습니다.");
+      });
+  };
 
   return (
     <Wrapper>
       <MainText>나에게 딱 맞는 칵테일은-</MainText>
       <Card>
-        <img src={resultArray[resultIndex].card} alt="card img" />
+        <img src={resultData[resultIndex].card} alt="card img" />
       </Card>
       <SubText style={{ marginTop: "2rem" }}>
         <span
-          style={{ color: resultArray[resultIndex].color, fontWeight: "800" }}
+          style={{ color: resultData[resultIndex].color, fontWeight: "800" }}
         >
-          {resultArray[resultIndex].name} 칵테일
+          {resultData[resultIndex].name} 칵테일
         </span>
         은 무슨 맛일지 <br />
         궁금하지 않으신가요?
       </SubText>
       <a
-        href={resultArray[resultIndex].link}
+        href={resultData[resultIndex].link}
         target="_blank"
         rel="noopener noreferrer"
       >
         <ColorBtn
           style={{
-            color: resultArray[resultIndex].color,
-            borderColor: resultArray[resultIndex].color,
+            color: resultData[resultIndex].color,
+            borderColor: resultData[resultIndex].color,
           }}
         >
           이 칵테일 들으러 가기
@@ -70,8 +63,8 @@ const ResultPage = () => {
         그리고 학관 12번 &lt;왓두유씽?&gt; 부스에 오시면 <br />
         실제 칵테일을 직접 마셔볼 수 있어요!
       </SubText>
-      <SaveBtn>테스트 하러가기</SaveBtn>
-      <ShareBtn>친구에게 테스트 공유하기</ShareBtn>
+      <SaveBtn onClick={handleSaveImage}>메뉴 카드 저장하기</SaveBtn>
+      <ShareBtn onClick={handleCopySiteLink}>친구에게 테스트 공유하기</ShareBtn>
       <Footer />
     </Wrapper>
   );
