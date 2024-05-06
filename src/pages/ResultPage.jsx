@@ -20,7 +20,7 @@ const ResultPage = () => {
   };
 
   const handleCopySiteLink = () => {
-    const siteUrl = "https://wdys-cocktail.vercel.app/";
+    const siteUrl = "https://what-do-you-drink.vercel.app/";
     navigator.clipboard
       .writeText(siteUrl)
       .then(() => alert("사이트 링크가 복사되었습니다."))
