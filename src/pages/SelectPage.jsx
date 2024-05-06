@@ -1,58 +1,68 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { selectData } from "../components/Select.mock";
+import { useNavigate } from "react-router-dom";
 
 const SelectPage = () => {
-  const [result, setResult] = useState([0, 0, 0, 0]); // 빨 주 파 초
+  const [result, setResult] = useState([0, 0, 0, 0]); // [빨, 주, 파, 초]
   const [currentId, setCurrentId] = useState(1); // 현재 페이지 id
-  const [selected, setSelected] = useState(0);
+
+  const currentData = selectData.find((data) => data.id === currentId); // 현재 id 해당 데이터
+  const updatedResult = [...result];
+
+  const navigate = useNavigate();
 
   //1번 선택
   const select1 = () => {
-    console.log("result: " + result);
-    setSelected(1);
-    handleOptionClick();
+    if (currentId <= selectData.length) {
+      const count = currentData.count || []; // 1번 선택 시 증가시킬 값이 든 배열
+      for (let i = 0; i < result.length; i++) {
+        if (count.includes(i)) {
+          updatedResult[i] += 1;
+        }
+      }
+      setResult(updatedResult);
+      goNext();
+    } else {
+      goResult();
+    }
   };
 
   //2번 선택
   const select2 = () => {
-    console.log("result: " + result);
-    setSelected(2);
-    handleOptionClick();
+    if (currentId <= selectData.length) {
+      const count = currentData.count || [];
+      for (let i = 0; i < result.length; i++) {
+        if (!count.includes(i)) {
+          updatedResult[i] += 1;
+        }
+      }
+      setResult(updatedResult);
+      goNext();
+    } else {
+      goResult();
+    }
   };
 
   //다음 질문으로 이동
   const goNext = () => {
-    if (currentId < selectData.length) {
-      setSelected(0);
-      setCurrentId(currentId + 1);
-    } else {
-      const max = Math.max(...result); // 최댓값 저장
-      //navigate('/result');
-    }
+    setCurrentId(currentId + 1);
   };
 
-  //값 증가 처리
-  const handleOptionClick = () => {
-    const currentData = selectData.find((data) => data.id === currentId); // 현재 id 해당 데이터
-    const count = currentData.count || [];
-
-    if (selected === 1) {
-      for (let i = 0; i < result.length; i++) {
-        if (count.includes(i)) {
-          setResult([result[i] + 1]);
-        }
-      }
-    } else if (selected === 2) {
-      for (let i = 0; i < result.length; i++) {
-        if (!count.includes(i)) {
-          setResult([result[i] + 1]);
-        }
-      }
-    }
-
-    goNext();
+  //결과 페이지로 이동
+  const goResult = () => {
+    // setResult(updatedResult);
+    const max = Math.max(...result); // 최댓값
+    console.log(max);
+    navigate("/result");
   };
+
+  useEffect(() => {
+    console.log("result" + (currentData.id - 1) + ": " + result);
+    // if (currentId == selectData.length) {
+    //   goResult();
+    // }
+  }, [result, currentId]);
 
   return (
     <>

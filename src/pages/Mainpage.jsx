@@ -2,8 +2,14 @@ import styled from "styled-components";
 
 import { ReactComponent as MainCocktail } from "../images/main-cocktail.svg";
 import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom";
 
 const MainPage = () => {
+  const navigate = useNavigate();
+  const goTest = () => {
+    navigate("/select");
+  };
+
   return (
     <Wrapper>
       <MainImg />
@@ -17,7 +23,7 @@ const MainPage = () => {
         학관 12번 &lt;왓두유씽?&gt; 부스에서 <br />
         똑같은 칵테일을 직접 마셔볼 수 있어요 :) <br />
       </SubText>
-      <TestBtn>테스트 하러가기</TestBtn>
+      <TestBtn onClick={goTest}>테스트 하러가기</TestBtn>
       <Footer />
     </Wrapper>
   );
