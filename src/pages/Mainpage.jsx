@@ -61,7 +61,7 @@ const MainText = styled.div`
   font-size: 1.875rem;
   font-weight: 700;
   line-height: 100%;
-  letter-spacing: -0.0375rem;
+  letter-spacing: -2px;
 
   @media (max-width: 320px) {
     font-size: 1.675rem;
