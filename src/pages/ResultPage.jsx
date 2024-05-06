@@ -7,7 +7,28 @@ import Footer from "../components/Footer";
 
 const ResultPage = () => {
   const location = useLocation();
-  const [resultIndex, setResultIndex] = useState(location.state);
+  const [resultIndex, setResultIndex] = useState(location.state ?? 0);
+
+  const handleSaveImage = () => {
+    const imageSrc = resultData[resultIndex].card;
+    const link = document.createElement("a");
+    link.href = imageSrc;
+    link.download = "cocktail_image.png";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleCopySiteLink = () => {
+    const siteUrl = "https://wdys-cocktail.vercel.app/";
+    navigator.clipboard
+      .writeText(siteUrl)
+      .then(() => alert("사이트 링크가 복사되었습니다."))
+      .catch(
+        (error) => console.error("링크 복사 실패: ", error),
+        alert("사이트 링크 복사에 실패했습니다.")
+      );
+  };
 
   return (
     <Wrapper>
@@ -42,8 +63,8 @@ const ResultPage = () => {
         그리고 학관 12번 &lt;왓두유씽?&gt; 부스에 오시면 <br />
         실제 칵테일을 직접 마셔볼 수 있어요!
       </SubText>
-      <SaveBtn>테스트 하러가기</SaveBtn>
-      <ShareBtn>친구에게 테스트 공유하기</ShareBtn>
+      <SaveBtn onClick={handleSaveImage}>메뉴 카드 저장하기</SaveBtn>
+      <ShareBtn onClick={handleCopySiteLink}>친구에게 테스트 공유하기</ShareBtn>
       <Footer />
     </Wrapper>
   );
