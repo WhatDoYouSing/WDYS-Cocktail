@@ -69,7 +69,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0 2.87rem;
 `;
 
 const Question = styled.div`
@@ -81,7 +80,12 @@ const Question = styled.div`
   font-style: normal;
   font-weight: 700;
   letter-spacing: -0.03rem;
+  white-space: pre-wrap;
   margin-bottom: 4.38rem;
+
+  @media (max-width: 340px) {
+    font-size: 1.3rem;
+  }
 `;
 
 const Option = styled.div`
@@ -103,6 +107,11 @@ const Option = styled.div`
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+
+  @media (max-width: 340px) {
+    width: 16.625rem;
+    font-size: 1.1rem;
+  }
 `;
 
 const PageNum = styled.div`
