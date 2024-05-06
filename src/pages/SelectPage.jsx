@@ -48,10 +48,10 @@ const SelectPage = () => {
     <>
       <Wrapper>
         <Question>{selectData[currentId - 1].question}</Question>
-        <Option onClick={() => select(1)}>
+        <Option onMouseUp={() => select(1)}>
           {selectData[currentId - 1].option1}
         </Option>
-        <Option onClick={() => select(2)}>
+        <Option onMouseUp={() => select(2)}>
           {selectData[currentId - 1].option2}
         </Option>
         <PageNum>{currentId}/10</PageNum>
@@ -76,6 +76,8 @@ const Question = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  font-family: Hahmlet;
   color: var(--Black, #262121);
   text-align: center;
   font-size: 1.5rem;
@@ -113,6 +115,12 @@ const Option = styled.div`
   @media (max-width: 340px) {
     width: 16.625rem;
     font-size: 1.1rem;
+  }
+
+  &:active {
+    background-color: #ff005c;
+    color: #fff;
+    border: none;
   }
 `;
 
