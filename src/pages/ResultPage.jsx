@@ -1,66 +1,38 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
-import cocktail01 from "../images/cocktail01.png";
-import cocktail02 from "../images/cocktail02.png";
-import cocktail03 from "../images/cocktail03.png";
-import cocktail04 from "../images/cocktail04.png";
+import { resultData } from "../statics/data/resultData";
 import Footer from "../components/Footer";
 
 const ResultPage = () => {
-  const [resultIndex, setResultIndex] = useState(0);
-
-  const resultArray = [
-    {
-      name: "Love parade",
-      color: "#FC6637",
-      card: cocktail01,
-      link: "https://whatdoyousing.swygbro.com/detail/212",
-    },
-    {
-      name: "항해",
-      color: "#50CBF1",
-      card: cocktail02,
-      link: "https://whatdoyousing.swygbro.com/detail/214",
-    },
-    {
-      name: "난춘",
-      color: "#FFA23F",
-      card: cocktail03,
-      link: "https://whatdoyousing.swygbro.com/detail/213",
-    },
-    {
-      name: "초록비",
-      color: "#66DA87",
-      card: cocktail04,
-      link: "https://whatdoyousing.swygbro.com/detail/215",
-    },
-  ];
+  const location = useLocation();
+  const [resultIndex, setResultIndex] = useState(location.state);
 
   return (
     <Wrapper>
       <MainText>나에게 딱 맞는 칵테일은-</MainText>
       <Card>
-        <img src={resultArray[resultIndex].card} alt="card img" />
+        <img src={resultData[resultIndex].card} alt="card img" />
       </Card>
       <SubText style={{ marginTop: "2rem" }}>
         <span
-          style={{ color: resultArray[resultIndex].color, fontWeight: "800" }}
+          style={{ color: resultData[resultIndex].color, fontWeight: "800" }}
         >
-          {resultArray[resultIndex].name} 칵테일
+          {resultData[resultIndex].name} 칵테일
         </span>
         은 무슨 맛일지 <br />
         궁금하지 않으신가요?
       </SubText>
       <a
-        href={resultArray[resultIndex].link}
+        href={resultData[resultIndex].link}
         target="_blank"
         rel="noopener noreferrer"
       >
         <ColorBtn
           style={{
-            color: resultArray[resultIndex].color,
-            borderColor: resultArray[resultIndex].color,
+            color: resultData[resultIndex].color,
+            borderColor: resultData[resultIndex].color,
           }}
         >
           이 칵테일 들으러 가기
