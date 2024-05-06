@@ -76,6 +76,8 @@ const Question = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  font-family: Hahmlet;
   color: var(--Black, #262121);
   text-align: center;
   font-size: 1.5rem;
